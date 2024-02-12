@@ -3,6 +3,8 @@
 
 A [vite](https://vitejs.dev/) template for building apps with [elm](https://elm-lang.org/). 
 
+[open app on your browser (codesandbox)](https://codesandbox.io/p/devbox/github/FaberVitale/vite-elm-template)
+
 ## License
 
 [MIT](./LICENSE)
