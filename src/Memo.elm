@@ -1,7 +1,6 @@
-module Memo exposing (..)
+module Memo exposing (Memo, apply, memo)
 
 import Dict exposing (Dict)
-import Html exposing (input)
 
 
 type alias Memo comparable res =
@@ -14,25 +13,27 @@ type alias Memo comparable res =
 
 apply : Memo comparable res -> comparable -> ( Memo comparable res, res )
 apply memoized input =
-    case memoized of
-        { func, dict } ->
-            case Dict.get input dict of
-                Nothing ->
-                    let
-                        result =
-                            func input
+    let
+        { func, dict } =
+            memoized
+    in
+    case Dict.get input dict of
+        Nothing ->
+            let
+                result =
+                    func input
 
-                        nextDict =
-                            Dict.insert input result dict
-                    in
-                    ( { func = func, dict = nextDict }, result )
+                nextDict =
+                    Dict.insert input result dict
+            in
+            ( { func = func, dict = nextDict }, result )
 
-                Just result ->
-                    let
-                        nextDict =
-                            Dict.insert input result dict
-                    in
-                    ( { func = func, dict = nextDict }, result )
+        Just result ->
+            let
+                nextDict =
+                    Dict.insert input result dict
+            in
+            ( { func = func, dict = nextDict }, result )
 
 
 

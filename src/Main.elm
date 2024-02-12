@@ -1,4 +1,4 @@
-module Main exposing (Model, init, main, update, view)
+module Main exposing (Model, main)
 
 import Browser
 import Html exposing (..)
@@ -7,6 +7,7 @@ import Html.Events exposing (onClick, onInput)
 import Math exposing (isPrime)
 import Memo exposing (Memo)
 import Msg exposing (..)
+import VitePluginHelper exposing (asset)
 
 
 
@@ -97,7 +98,11 @@ view model =
             stringFromBool model.result
     in
     main_ [ class "main" ]
-        [ div [ class "toolbar" ]
+        [ header [ class "toolbar" ]
+            [ h1 [] [ text "vite-elm-template" ]
+            , img [ src <| asset "./assets/logo.png", class "logo" ] []
+            ]
+        , div [ class "toolbar" ]
             [ input [ attribute "type" "range", attribute "min" "1", attribute "max" "100", value numAsString, onInput UpdateTo ] []
             , p [] [ text ("Input: " ++ numAsString ++ ", isPrime: " ++ isPrimeAsString) ]
             ]

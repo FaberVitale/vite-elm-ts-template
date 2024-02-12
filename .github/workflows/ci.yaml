@@ -26,6 +26,8 @@ jobs:
         run: npm ci
       - name: lint - typescript
         run: npm run lint:ts
+      - name: lint - elm
+        run: npm run lint:elm
       - name: test
         run: npm run test
       - name: Build
