@@ -13,7 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-&, &::before, &::after {
+&,
+&::before,
+&::after {
   box-sizing: border-box;
 }
 
