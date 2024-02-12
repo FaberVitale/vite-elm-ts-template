@@ -1,7 +1,8 @@
 {
-  "name": "vite-elm-template",
+  "name": "vite-elm-ts-template",
   "private": true,
-  "version": "0.0.0",
+  "description": "A template to build apps with Elm and Typescript",
+  "version": "1.0.0",
   "type": "module",
   "license": "MIT",
   "scripts": {
@@ -10,7 +11,7 @@
     "test:watch": "elm-test-rs --watch tests/**/*.elm",
     "lint:ts": "tsc --noEmit",
     "lint:elm": "elm-review src",
-    "fmt": "elm-format src --yes && prettier src --write",
+    "fmt": "elm-format src --yes && prettier src index.html --write",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "elm-tooling install"
