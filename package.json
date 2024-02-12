@@ -8,6 +8,9 @@
     "dev": "vite",
     "test": "elm-test-rs  tests/**/*.elm",
     "test:watch": "elm-test-rs --watch tests/**/*.elm",
+    "lint:ts": "tsc --noEmit",
+    "lint:elm": "elm-review src",
+    "fmt": "elm-format src --yes && prettier src --write",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "elm-tooling install"
@@ -16,6 +19,7 @@
     "elm-debug-transformer": "^1.2.1",
     "elm-review": "^2.10.3",
     "elm-tooling": "^1.15.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.2.2",
     "vite": "^5.1.0",
     "vite-plugin-elm": "^3.0.0"

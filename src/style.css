@@ -13,7 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-&, &::before, &::after {
+&,
+&::before,
+&::after {
   box-sizing: border-box;
 }
 
@@ -48,7 +50,6 @@ h1 {
 
 .logo {
   height: 6em;
-  padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -108,4 +109,9 @@ button:focus-visible {
   display: flex;
   gap: 4px;
   font-variant-numeric: tabular-nums;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
 }
