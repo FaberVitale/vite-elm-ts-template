@@ -110,5 +110,5 @@ view model =
             , button [ type_ "button", onClick (UpdateBy btnDelta) ] [ text ("+" ++ increaseDeltaToString) ]
             , button [ type_ "button", onClick Reset ] [ text "reset" ]
             ]
-        , p [] [ text "A ", a [ href "https://vitejs.dev/" ] [ text "Vite" ], text " template for building apps with ", a [ href "https://elm-lang.org/" ] [ text "Elm" ], text " and ", a [ href "typescript" ] [ text "Typescript" ] ]
+        , p [] [ text "A ", a [ href "https://vitejs.dev/" ] [ text "Vite" ], text " template for building apps with ", a [ href "https://elm-lang.org/" ] [ text "Elm" ], text " and ", a [ href "https://www.typescriptlang.org/" ] [ text "Typescript" ] ]
         ]
