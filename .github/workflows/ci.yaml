@@ -15,10 +15,9 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: 'v20.10.0'
+          node-version-file: '.nvmrc'
           cache: 'npm'
       - name: log info
         run: >
