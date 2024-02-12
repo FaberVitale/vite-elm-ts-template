@@ -8,6 +8,7 @@
     "dev": "vite",
     "test": "elm-test-rs  tests/**/*.elm",
     "test:watch": "elm-test-rs --watch tests/**/*.elm",
+    "lint:ts": "tsc --noEmit",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "elm-tooling install"
