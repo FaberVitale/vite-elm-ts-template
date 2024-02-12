@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "test": "elm-test  tests/**/*.elm",
-    "test:watch": "elm-test --watch tests/**/*.elm",
+    "test": "elm-test-rs  tests/**/*.elm",
+    "test:watch": "elm-test-rs --watch tests/**/*.elm",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "elm-tooling install"
@@ -17,7 +17,6 @@
     "elm-tooling": "^1.15.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.0",
-    "vite-plugin-elm": "^3.0.0",
-    "elm-test": "^0.19.1-revision12"
+    "vite-plugin-elm": "^3.0.0"
   }
 }
