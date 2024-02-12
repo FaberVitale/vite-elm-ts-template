@@ -52,6 +52,11 @@ npm run fmt
 npm run lint:elm && npm run lint:ts
 ```
 
+### Git hooks
+
+On pre-commit, changes are formatted and linted using [Husky](https://typicode.github.io/husky/) and [lint-staged](https://github.com/lint-staged/lint-staged).
+See [.lintstagedrc.mjs](.lintstagedrc.mjs) for more details.
+
 ### CI
 
 - [CI workflow](.github/workflows/ci.yaml)
