@@ -41,15 +41,6 @@ btnDelta =
 -- UPDATE
 
 
-stringFromBool : Bool -> String
-stringFromBool val =
-    if val then
-        "True"
-
-    else
-        "False"
-
-
 update : Msg -> Model -> Model
 update msg model =
     case msg of
@@ -94,17 +85,25 @@ view model =
         increaseDeltaToString =
             String.fromInt btnDelta
 
+        stringFromBool val =
+            if val then
+                "yes"
+
+            else
+                "no"
+
         isPrimeAsString =
             stringFromBool model.result
     in
     main_ [ class "main" ]
-        [ header [ class "toolbar" ]
-            [ h1 [] [ text "vite-elm-template" ]
+        [ header [ class "toolbar header" ]
+            [ h1 [] [ text "vite-elm-ts-template" ]
             , img [ src <| asset "./assets/logo.png", class "logo" ] []
             ]
         , div [ class "toolbar" ]
-            [ input [ attribute "type" "range", attribute "min" "1", attribute "max" "100", value numAsString, onInput UpdateTo ] []
-            , p [] [ text ("Input: " ++ numAsString ++ ", isPrime: " ++ isPrimeAsString) ]
+            [ input [ attribute "id" "counter-range", attribute "type" "range", attribute "min" "1", attribute "max" "100", value numAsString, onInput UpdateTo ] []
+            , label [ attribute "for" "counter-range" ] [ text ("n: " ++ numAsString) ]
+            , output [] [ text ("isPrime: " ++ isPrimeAsString) ]
             ]
         , div [ class "toolbar" ]
             [ button [ attribute "type" "button", onClick (UpdateBy -btnDelta) ] [ text ("-" ++ increaseDeltaToString) ]

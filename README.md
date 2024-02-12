@@ -1,15 +1,22 @@
-<h1>vite-elm-template <img aria-hidden="true" alt="" src="src/assets/logo.png" style="width: 24px;"></h1>
+<h1>vite-elm-ts-template <img aria-hidden="true" alt="" src="src/assets/logo.png" style="width: 24px;"></h1>
 
 
-A [vite](https://vitejs.dev/) template for building apps with [elm](https://elm-lang.org/). 
+A [vite](https://vitejs.dev/) template for building apps with [elm](https://elm-lang.org/) and [typescript](https://www.typescriptlang.org/). 
 
-[open app on your browser (codesandbox)](https://codesandbox.io/p/devbox/github/FaberVitale/vite-elm-template)
+## Demo
+
+https://vite-elm-ts-template.netlify.app/
 
 ## Development guide
 
+## Quick start
+
+Either [open it on your browser (codesandbox)](https://codesandbox.io/p/devbox/github/FaberVitale/vite-elm-ts-template)
+or clone the repository.
+
 ### Scripts
 
-#### Start project
+#### Install project
 
 ```bash
 npm i
