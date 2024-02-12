@@ -96,12 +96,12 @@ view model =
         isPrimeAsString =
             stringFromBool model.result
     in
-    div []
-        [ div [ class "flex" ]
-            [ input [ attribute "type" "range", attribute "min" "2", attribute "max" "100", value numAsString, onInput UpdateTo ] []
+    main_ [ class "main" ]
+        [ div [ class "toolbar" ]
+            [ input [ attribute "type" "range", attribute "min" "1", attribute "max" "100", value numAsString, onInput UpdateTo ] []
             , p [] [ text ("Input: " ++ numAsString ++ ", isPrime: " ++ isPrimeAsString) ]
             ]
-        , div [ class "flex" ]
+        , div [ class "toolbar" ]
             [ button [ attribute "type" "button", onClick (UpdateBy -btnDelta) ] [ text ("-" ++ increaseDeltaToString) ]
             , button [ attribute "type" "button", onClick (UpdateBy btnDelta) ] [ text ("+" ++ increaseDeltaToString) ]
             , button [ attribute "type" "button", onClick Reset ] [ text "reset" ]
