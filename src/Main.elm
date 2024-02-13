@@ -1,9 +1,9 @@
 module Main exposing (Model, main)
 
 import Browser
+import Counter exposing (counter)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onClick, onInput)
 import Math exposing (isPrime)
 import Memo exposing (Memo)
 import Msg exposing (..)
@@ -29,7 +29,7 @@ type alias Model =
 
 init : Model
 init =
-    { num = 10, result = False, memoized = Memo.memo isPrime }
+    { num = 2, result = False, memoized = Memo.memo isPrime }
 
 
 btnDelta : number
@@ -78,37 +78,11 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    let
-        numAsString =
-            String.fromInt model.num
-
-        increaseDeltaToString =
-            String.fromInt btnDelta
-
-        stringFromBool val =
-            if val then
-                "yes"
-
-            else
-                "no"
-
-        isPrimeAsString =
-            stringFromBool model.result
-    in
     main_ [ class "main" ]
         [ header [ class "toolbar header" ]
             [ h1 [] [ text "vite-elm-ts-template" ]
             , img [ src <| asset "./assets/logo.png", class "logo" ] []
             ]
-        , div [ class "toolbar" ]
-            [ input [ id "counter-range", type_ "range", attribute "min" "1", attribute "max" "100", value numAsString, onInput UpdateTo ] []
-            , label [ for "counter-range" ] [ text ("n: " ++ numAsString) ]
-            , output [] [ text ("isPrime: " ++ isPrimeAsString) ]
-            ]
-        , div [ class "toolbar" ]
-            [ button [ type_ "button", onClick (UpdateBy -btnDelta) ] [ text ("-" ++ increaseDeltaToString) ]
-            , button [ type_ "button", onClick (UpdateBy btnDelta) ] [ text ("+" ++ increaseDeltaToString) ]
-            , button [ type_ "button", onClick Reset ] [ text "reset" ]
-            ]
-        , p [] [ text "A ", a [ href "https://vitejs.dev/" ] [ text "Vite" ], text " template for building apps with ", a [ href "https://elm-lang.org/" ] [ text "Elm" ], text " and ", a [ href "https://www.typescriptlang.org/" ] [ text "Typescript" ] ]
+        , counter { num = model.num, isPrime = model.result, btnDelta = btnDelta }
+        , footer [ class "footer" ] [ text "A ", a [ href "https://vitejs.dev/" ] [ text "Vite" ], text " template for building apps with ", a [ href "https://elm-lang.org/" ] [ text "Elm" ], text " and ", a [ href "https://www.typescriptlang.org/" ] [ text "Typescript" ] ]
         ]

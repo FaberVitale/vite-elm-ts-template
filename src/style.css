@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -11,6 +11,16 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  height: inherit;
 }
 
 &,
@@ -23,14 +33,6 @@ a {
   font-weight: 600;
   color: inherit;
   text-decoration: underline;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -90,6 +92,10 @@ button:focus-visible {
   padding: 0 8px 8px;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .header h1 {
   font-size: 1.6rem;
   margin: 0;
@@ -120,4 +126,10 @@ output {
   .logo {
     width: 72px;
   }
+}
+
+.footer {
+  display: block;
+  padding: 4px;
+  text-align: center;
 }
