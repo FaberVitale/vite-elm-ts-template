@@ -3,3 +3,4 @@ dist/
 elm-stuff/
 node_modules/
 .github/
+package-lock.json
