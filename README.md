@@ -1,5 +1,6 @@
 <h1>vite-elm-ts-template <img aria-hidden="true" alt="" src="src/assets/logo.png" style="width: 24px;"></h1>
 
+## Description
 
 A [vite](https://vitejs.dev/) template for building apps with [elm](https://elm-lang.org/) and [typescript](https://www.typescriptlang.org/). 
 
