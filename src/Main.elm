@@ -29,7 +29,14 @@ type alias Model =
 
 init : Model
 init =
-    { num = 2, result = False, memoized = Memo.memo isPrime }
+    let
+        num =
+            2
+
+        result =
+            isPrime num
+    in
+    { num = num, result = result, memoized = Memo.memo isPrime }
 
 
 btnDelta : number
