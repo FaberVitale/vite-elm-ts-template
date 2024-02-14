@@ -1,4 +1,4 @@
-module CounterTest exposing (..)
+module CounterTest exposing (suite)
 
 import Counter exposing (CounterProps, counter)
 import Html.Attributes exposing (value)

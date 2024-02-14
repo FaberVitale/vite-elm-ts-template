@@ -1,7 +1,6 @@
-module MemoTest exposing (..)
+module MemoTest exposing (suite)
 
 import Expect
-import Math exposing (..)
 import Memo as M
 import Test exposing (..)
 
