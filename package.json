@@ -11,6 +11,7 @@
     "test:watch": "elm-test-rs --watch tests/**/*.elm",
     "lint:ts": "tsc --noEmit",
     "lint:elm": "elm-review src",
+    "lint:elm:fix": "elm-review --fix-all",
     "fmt": "elm-format src review tests --yes && prettier src index.html --write",
     "build": "tsc && vite build",
     "preview": "vite preview",
