@@ -25,3 +25,4 @@ dist-ssr
 
 # Elm
 elm-stuff/
+src/Main.elm.d.ts
