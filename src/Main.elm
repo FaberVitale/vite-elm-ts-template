@@ -4,6 +4,9 @@ import Browser
 import Counter exposing (counter)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import InteropDefinitions exposing (Flags)
+import InteropPorts exposing (decodeFlags)
+import Json.Decode
 import Math exposing (isPrime)
 import Memo exposing (Memo)
 import Msg exposing (..)
@@ -14,9 +17,9 @@ import VitePluginHelper exposing (asset)
 -- MAIN
 
 
-main : Program () Model Msg
+main : Program Json.Decode.Value Model Msg
 main =
-    Browser.sandbox { init = init, update = update, view = view }
+    Browser.element { init = init, update = update, view = view, subscriptions = subscriptions }
 
 
 
@@ -24,31 +27,33 @@ main =
 
 
 type alias Model =
-    { num : Int, result : Bool, memoized : Memo Int Bool }
+    { num : Int, result : Bool, memoized : Memo Int Bool, flags : Flags, latestIncomingMessageError : Maybe Json.Decode.Error }
 
 
-init : Model
-init =
+init : Json.Decode.Value -> ( Model, Cmd Msg )
+init rawFlags =
     let
-        num =
-            2
+        flags =
+            rawFlags
+                |> decodeFlags
+                |> Result.withDefault defaultFlags
 
-        result =
-            isPrime num
+        { initialValue } =
+            flags.counter
     in
-    { num = num, result = result, memoized = Memo.memo isPrime }
+    ( { num = initialValue, result = isPrime initialValue, memoized = Memo.memo isPrime, flags = flags, latestIncomingMessageError = Nothing }, Cmd.none )
 
 
-btnDelta : number
-btnDelta =
-    5
+defaultFlags : Flags
+defaultFlags =
+    { counter = { btnDelta = 3, initialValue = 1 } }
 
 
 
 -- UPDATE
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         UpdateTo value ->
@@ -56,12 +61,21 @@ update msg model =
                 num =
                     value
                         |> String.toInt
-                        |> Maybe.withDefault init.num
+                        |> Maybe.withDefault 2
 
                 ( memoized, result ) =
                     Memo.apply model.memoized num
             in
-            { num = num, result = result, memoized = memoized }
+            ( { model
+                | num = num
+                , result = result
+                , memoized = memoized
+              }
+            , Cmd.none
+            )
+
+        Ping ->
+            ( model, InteropPorts.fromElm InteropDefinitions.PingFromElm )
 
         UpdateBy delta ->
             let
@@ -73,10 +87,13 @@ update msg model =
                 ( memoized, result ) =
                     Memo.apply model.memoized num
             in
-            { num = num, result = result, memoized = memoized }
+            ( { model | num = num, result = result, memoized = memoized }, Cmd.none )
+
+        DecodeIncomingMessageError err ->
+            ( { model | latestIncomingMessageError = Just err }, Cmd.none )
 
         Reset ->
-            { init | memoized = model.memoized }
+            ( { model | num = model.flags.counter.initialValue, result = isPrime model.flags.counter.initialValue }, Cmd.none )
 
 
 
@@ -90,6 +107,26 @@ view model =
             [ h1 [] [ text "vite-elm-ts-template" ]
             , img [ src <| asset "./assets/logo.png", class "logo" ] []
             ]
-        , counter { num = model.num, isPrime = model.result, btnDelta = btnDelta }
+        , counter { num = model.num, isPrime = model.result, btnDelta = model.flags.counter.btnDelta }
         , footer [ class "footer" ] [ text "A ", a [ href "https://vitejs.dev/" ] [ text "Vite" ], text " template for building apps with ", a [ href "https://elm-lang.org/" ] [ text "Elm" ], text " and ", a [ href "https://www.typescriptlang.org/" ] [ text "Typescript" ] ]
         ]
+
+
+
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    InteropPorts.toElm
+        |> Sub.map
+            (\toElm ->
+                case toElm of
+                    Ok msg ->
+                        case msg of
+                            InteropDefinitions.PingFromTs ->
+                                Ping
+
+                    Err decodingError ->
+                        DecodeIncomingMessageError decodingError
+            )
